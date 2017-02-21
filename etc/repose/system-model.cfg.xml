@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- To configure Repose see: http://www.openrepose.org/versions/8.4.0.1/index.html -->
+<system-model xmlns="http://docs.openrepose.org/repose/system-model/v2.0">
+    <repose-cluster id="repose">
+        <nodes>
+            <node id="repose_node1" hostname="localhost" http-port="80"/>
+            <!--
+            <node id="repose_node2" hostname="other_repose_host" http-port="8080" https-port="8443"/>
+            -->
+        </nodes>
+        <filters>
+          <filter name="ip-user"/>
+          <filter name="rate-limiting"/>
+          <!--
+            <filter name="header-user"/>
+          -->
+        </filters>
+        <services>
+            <!--
+            <service name="dist-datastore"/>
+            -->
+        </services>
+        <destinations>
+            <endpoint id="service" protocol="http" hostname="nginx" root-path="/" port="80" default="true"/>
+        </destinations>
+    </repose-cluster>
+</system-model>
