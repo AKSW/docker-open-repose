@@ -3,10 +3,21 @@ version: "2.1"
 services:
   repose-proxy:
     image: rackerlabs/repose:8.4.0.1
+    networks:
+      - nginx
+      - keystone
     volumes:
       - ./etc/repose:/etc/repose
     ports:
       - 80:80
 
   nginx:
+    networks:
+      - nginx
     image: nginx
+
+networks:
+  nginx:
+  keystone:
+    external:
+      name: keystone
